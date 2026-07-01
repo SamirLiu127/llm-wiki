@@ -53,7 +53,7 @@ When you are invoked (via `Skill("llm-wiki")`), determine which workflow to foll
 
 | Command | Command file | What it does | Workflow file |
 |---------|-------------|-------------|---------------|
-| `/wiki` | _(skill auto-registration)_ | Dashboard — stats, recent activity, pending reviews | (inline below) |
+| `/wiki` | `commands/wiki.md` | Dashboard — stats, recent activity, pending reviews | (inline below) |
 | `/wiki-ingest <file\|URL>` | `commands/wiki-ingest.md` | Ingest a source into the wiki (two-phase) | `workflows/ingest.md` |
 | `/wiki-query <question>` | `commands/wiki-query.md` | Answer a question from wiki knowledge | `workflows/query.md` |
 | `/wiki-lint [--quick\|--full]` | `commands/wiki-lint.md` | Health check — structural or semantic | `workflows/lint.md` |
@@ -107,18 +107,18 @@ When the user invokes `/wiki`, do the following:
 5. **Present the dashboard**:
 
 ```
-# Wiki Dashboard / 维基面板
+# Wiki Dashboard / 維基面板
 
 **Total pages:** {N}
 **Last updated:** {timestamp}
 **Index status:** {fresh|stale — run /wiki-lint}
 
-## Recent Activity / 最近活动
+## Recent Activity / 最近活動
 | Date | Operation | Title |
 |------|-----------|-------|
 ... (from log if exists, or index modified dates)
 
-## Page Types / 页面类型
+## Page Types / 頁面類型
 | Type | Count |
 |------|-------|
 | concept | N |
@@ -126,10 +126,10 @@ When the user invokes `/wiki`, do the following:
 | person | N |
 | synthesis | N |
 
-## Pending Review / 待审核 ({N})
+## Pending Review / 待審核 ({N})
 ... (from review.json)
 
-## Active Topics / 活跃主题
+## Active Topics / 活躍主題
 ... (from hot-cache if available)
 ```
 

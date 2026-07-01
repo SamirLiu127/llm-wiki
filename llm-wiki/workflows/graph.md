@@ -13,7 +13,7 @@
 List all pages and extract node/edge data:
 
 ```bash
-find "$WIKI_ROOT" -maxdepth 1 -name "*.md" ! -path "*/.llm-wiki/*" ! -name "index.md"
+find "$WIKI_ROOT" -maxdepth 2 -name "*.md" ! -path "*/.llm-wiki/*" ! -name "index.md"
 ```
 
 Build structure:
@@ -48,7 +48,7 @@ Create a self-contained HTML file at `$WIKI_ROOT/.llm-wiki/graph.html` with:
 ### Step 5: Present
 
 ```
-# Knowledge Graph / 知识图谱
+# Knowledge Graph / 知識圖譜
 **Nodes:** {N} | **Edges:** {N} | **Orphans:** {N} | **Hubs:** {N}
 Graph: wiki/.llm-wiki/graph.html | Data: wiki/.llm-wiki/graph.json
 ```

@@ -150,11 +150,17 @@ wiki/
 │   │   ├── state-hash.txt          Detects external modifications
 │   │   └── ingests/{sha256}.done   Sentinel files (idempotent ingestion)
 │   └── inbox/{sha256}-analysis.md  Phase 1 ingest analyses
-├── transformer.md                  Concept page
-├── 2026-04-28-weekly-notes.md      Article page
-├── alan-turing.md                  Person page
-└── synth-2026-04-28-riscv.md       Synthesis page
+├── article/
+│   └── 2026-04-28-weekly-notes.md  Article page
+├── concept/
+│   └── transformer.md              Concept page
+├── person/
+│   └── alan-turing.md              Person page
+└── synthesis/
+    └── synth-2026-04-28-riscv.md   Synthesis page
 ```
+
+Pages are organized by type into subfolders by default (`organize_by_type: true` in `config.md`). Set `organize_by_type: false` for the older flat layout, with all pages directly under `wiki/`. Either way, [[wikilinks]] always resolve by slug alone — never a path.
 
 ---
 
@@ -175,7 +181,7 @@ Body: Definition → Key Properties → Examples → Related
 type: article
 ```
 
-File: `YYYY-MM-DD-{slug}.md`
+File: `article/YYYY-MM-DD-{slug}.md`
 
 ### `person` — Author, researcher, notable individual
 
@@ -190,7 +196,7 @@ type: synthesis
 query, based_on[], confidence: high | medium | low
 ```
 
-File: `synth-YYYY-MM-DD-{slug}.md`
+File: `synthesis/synth-YYYY-MM-DD-{slug}.md`
 
 ---
 
@@ -212,6 +218,7 @@ llm-wiki/
 ├── WIKI_SCHEMA.md                   Page type definitions & conventions
 ├── install.sh                       Global installation (one-time)
 ├── commands/                        Auto-discovered slash commands
+│   ├── wiki.md                      /wiki
 │   ├── wiki-ingest.md               /wiki-ingest
 │   ├── wiki-query.md                /wiki-query
 │   ├── wiki-lint.md                 /wiki-lint

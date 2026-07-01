@@ -36,6 +36,7 @@ echo "Initializing LLM Wiki at: $WIKI_ROOT"
 mkdir -p "$WIKI_ROOT"
 mkdir -p "$WIKI_ROOT/.llm-wiki/cache/ingests"
 mkdir -p "$WIKI_ROOT/.llm-wiki/inbox"
+mkdir -p "$WIKI_ROOT/article" "$WIKI_ROOT/concept" "$WIKI_ROOT/person" "$WIKI_ROOT/synthesis"
 
 # Copy schema
 cp "$SCHEMA_SRC" "$WIKI_ROOT/.llm-wiki/schema.md"
@@ -56,6 +57,7 @@ provides human-readable documentation.
 wiki_name: "My Wiki"
 wiki_root: "./wiki"
 language: "bilingual"       # en | zh | bilingual
+organize_by_type: true       # Store pages under article/, concept/, person/, synthesis/ subfolders; set false for the flat layout
 
 ## Ingest Settings
 auto_index: true             # Auto-regenerate index after each change
@@ -93,10 +95,10 @@ if [ ! -f "$WIKI_ROOT/.llm-wiki/index.md" ] || [ "$FORCE" = true ]; then
 ## By Tag
 *No pages yet.*
 
-## Orphan Pages / 孤立页面
+## Orphan Pages / 孤立頁面
 *No pages yet.*
 
-## Review Queue / 审核队列
+## Review Queue / 審核隊列
 *No pending reviews.*
 INDEXEOF
     echo "  ✓ index.md"
@@ -105,13 +107,13 @@ fi
 # Create initial hot-cache.md if it doesn't exist
 if [ ! -f "$WIKI_ROOT/.llm-wiki/cache/hot-cache.md" ] || [ "$FORCE" = true ]; then
     cat > "$WIKI_ROOT/.llm-wiki/cache/hot-cache.md" << 'HOTEOF'
-# Hot Cache / 热缓存
+# Hot Cache / 熱緩存
 **Last session:** (none)
 
-## Recent Activity / 最近活动
+## Recent Activity / 最近活動
 *First session — no activity yet.*
 
-## Pending Review / 待审核
+## Pending Review / 待審核
 *No pending reviews.*
 HOTEOF
     echo "  ✓ cache/hot-cache.md"

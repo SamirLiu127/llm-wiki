@@ -134,7 +134,7 @@ Write the analysis to `$WIKI_ROOT/.llm-wiki/inbox/$HASH-analysis.md`:
 **Language detected:** {en|zh|bilingual}
 **Analyzed:** {ISO timestamp}
 
-## Source Summary / 来源摘要
+## Source Summary / 來源摘要
 [2-3 sentence summary of the source content.]
 
 ## Concepts to Extract / 待提取概念
@@ -143,7 +143,7 @@ Write the analysis to `$WIKI_ROOT/.llm-wiki/inbox/$HASH-analysis.md`:
 | concept-name | create | New concept defined in source |
 | existing-concept | update | New information to add |
 
-## Persons to Create/Update / 待创建/更新的人物
+## Persons to Create/Update / 待創建/更新的人物
 | Person | Action | Details |
 |--------|--------|---------|
 | name | create | Key contributor |
@@ -153,15 +153,15 @@ Write the analysis to `$WIKI_ROOT/.llm-wiki/inbox/$HASH-analysis.md`:
 |----------|------|-------|-------------|
 | ... | article | ... | ... |
 
-## Contradictions Detected / 检测到的矛盾
+## Contradictions Detected / 檢測到的矛盾
 | Existing Page | New Claim | Conflict |
 |---------------|-----------|----------|
 | [[page-a]] | "Claim from source" | "Existing claim from page-a" |
 
-## Proposed Cross-Links / 建议的交叉链接
+## Proposed Cross-Links / 建議的交叉鏈接
 - [[page-a]] ↔ [[new-page]] — relationship description
 
-## Items for User Review / 待用户审核
+## Items for User Review / 待用戶審核
 - [ ] Decision point or question for the user
 ```
 
@@ -187,7 +187,7 @@ Show the user a summary of the analysis:
 **If the source warrants an article page** (research notes, blog post, imported article):
 
 1. Read `templates/article.md` from the skill directory
-2. Create `$WIKI_ROOT/{YYYY-MM-DD}-{slug}.md`
+2. Create `$WIKI_ROOT/article/{YYYY-MM-DD}-{slug}.md` (or `$WIKI_ROOT/{YYYY-MM-DD}-{slug}.md` if `organize_by_type: false` in config)
 3. Fill frontmatter:
    - `title`: Descriptive title (use bilingual format if source is bilingual)
    - `type: article`
@@ -207,7 +207,7 @@ For each concept identified in Phase 1:
 **If creating a new concept page:**
 
 1. Read `templates/concept.md`
-2. Create `$WIKI_ROOT/{slug}.md`
+2. Create `$WIKI_ROOT/concept/{slug}.md` (or `$WIKI_ROOT/{slug}.md` if `organize_by_type: false` in config)
 3. Fill all required frontmatter
 4. Write the body following the template
 5. Include [[wikilinks]] to:
@@ -230,7 +230,7 @@ For each person identified in Phase 1:
 **If creating a new person page:**
 
 1. Read `templates/person.md`
-2. Create `$WIKI_ROOT/{slug}.md`
+2. Create `$WIKI_ROOT/person/{slug}.md` (or `$WIKI_ROOT/{slug}.md` if `organize_by_type: false` in config)
 3. Fill required frontmatter + any optional fields known
 4. Write body following the template
 5. Link to their work/concepts
@@ -255,7 +255,7 @@ For each contradiction found in Phase 1:
 
    ```markdown
    > ⚠️ **Contradiction / 矛盾**: [description]
-   > | Page | Claim / 主张 |
+   > | Page | Claim / 主張 |
    > |------|-------------|
    > | [[page-a]] | "Claim A" |
    > | [[page-b]] | "Claim B — contradicts A" |
@@ -272,7 +272,7 @@ For each contradiction found in Phase 1:
 
 **This is a programmatic operation — do not edit index.md by hand.**
 
-1. Read all `*.md` files in `$WIKI_ROOT/` (excluding `.llm-wiki/` and `index.md`)
+1. Read all `*.md` files in `$WIKI_ROOT/` and its type subfolders (`article/`, `concept/`, `person/`, `synthesis/`), excluding `.llm-wiki/` and `index.md`
 2. Also read from `$WIKI_ROOT/topics/` if it exists
 3. Extract frontmatter from each page (between `---` delimiters)
 4. For each page, collect: slug, title, type, language, tags, summary, modified
@@ -309,7 +309,7 @@ For each contradiction found in Phase 1:
 Present a clean summary to the user:
 
 ```
-# Ingest Complete / 摄取完成
+# Ingest Complete / 攝取完成
 
 **Source:** {source name}
 **Language:** {en|zh|bilingual}

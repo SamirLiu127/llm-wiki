@@ -19,7 +19,7 @@ Read `$WIKI_ROOT/.llm-wiki/review.json`:
 ### Step 2: Show Overview
 
 ```
-# Review Queue / 审核队列
+# Review Queue / 審核隊列
 **Total:** {N} | **Errors:** {N} | **Warnings:** {N} | **Info:** {N}
 | # | Type | Severity | Pages | Description |
 ```
@@ -49,7 +49,7 @@ Move resolved items to `resolved` array; write back.
 ### Step 6: Show Summary
 
 ```
-# Review Complete / 审核完成
+# Review Complete / 審核完成
 **Processed:** {N} | **Resolved:** {N} | **Skipped:** {N}
 ```
 
