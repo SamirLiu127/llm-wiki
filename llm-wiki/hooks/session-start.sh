@@ -19,7 +19,7 @@ STATE_HASH_FILE="$WIKI_ROOT/.llm-wiki/cache/state-hash.txt"
 REVIEW_JSON="$WIKI_ROOT/.llm-wiki/review.json"
 
 # Compute current state hash from all wiki pages
-CURRENT_HASH=$(find "$WIKI_ROOT" -maxdepth 1 -name "*.md" ! -name "index.md" -exec sha256sum {} \; 2>/dev/null | sort | sha256sum | cut -d' ' -f1)
+CURRENT_HASH=$(find "$WIKI_ROOT" -maxdepth 2 -name "*.md" ! -path "*/.llm-wiki/*" ! -name "index.md" -exec sha256sum {} \; 2>/dev/null | sort | sha256sum | cut -d' ' -f1)
 
 cat << HEADER
 ---
@@ -66,7 +66,7 @@ if [ -f "$INDEX" ]; then
     # Tag cloud
     TAGS=$(grep '^### ' "$INDEX" 2>/dev/null | sed 's/^### //' | sed 's/ ([0-9]* pages)//' || true)
     if [ -n "$TAGS" ]; then
-        echo "### Available Topics / 可用主题"
+        echo "### Available Topics / 可用主題"
         echo "$TAGS" | while read -r tag; do
             echo "- \`$tag\`"
         done
@@ -89,7 +89,7 @@ fi
 
 # Hot cache from previous session
 if [ -f "$HOT_CACHE" ]; then
-    echo "### Context from Previous Session / 上次会话上下文"
+    echo "### Context from Previous Session / 上次會話上下文"
     cat "$HOT_CACHE"
     echo ""
 fi

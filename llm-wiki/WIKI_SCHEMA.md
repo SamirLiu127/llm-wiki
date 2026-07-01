@@ -15,10 +15,12 @@ Read this file when you need to understand:
 
 | Type | File Pattern | Purpose |
 |------|-------------|---------|
-| `concept` | `{slug}.md` | Define a term, idea, methodology, framework, or tool |
-| `article` | `{YYYY-MM-DD}-{slug}.md` | Research notes, blog drafts, meeting notes, diary entries, imported documents |
-| `person` | `{slug}.md` | Author, researcher, historical figure, notable individual |
-| `synthesis` | `synth-{YYYY-MM-DD}-{slug}.md` | Saved query answer — a synthesized page from existing knowledge |
+| `concept` | `concept/{slug}.md` | Define a term, idea, methodology, framework, or tool |
+| `article` | `article/{YYYY-MM-DD}-{slug}.md` | Research notes, blog drafts, meeting notes, diary entries, imported documents |
+| `person` | `person/{slug}.md` | Author, researcher, historical figure, notable individual |
+| `synthesis` | `synthesis/synth-{YYYY-MM-DD}-{slug}.md` | Saved query answer — a synthesized page from existing knowledge |
+
+Pages are organized into type subfolders by default (`organize_by_type: true` in `config.md`). Set `organize_by_type: false` to keep the older flat layout (all pages directly under `$WIKI_ROOT/`) — both layouts are supported; only the directory changes, the file naming pattern within each type stays the same.
 
 ---
 
@@ -26,7 +28,7 @@ Read this file when you need to understand:
 
 **Purpose**: Define a term, idea, methodology, framework, tool, or entity.
 
-**File naming**: `{slug}.md` — lowercase kebab-case, ASCII-safe. Examples:
+**File naming**: `concept/{slug}.md` — lowercase kebab-case, ASCII-safe (or `{slug}.md` at wiki root if `organize_by_type: false`). Examples:
 
 - `transformer-architecture.md`
 - `retrieval-augmented-generation.md`
@@ -36,7 +38,7 @@ Read this file when you need to understand:
 
 ```yaml
 ---
-title: "Display Title"              # Can be bilingual: "Quantum Computing / 量子计算"
+title: "Display Title"              # Can be bilingual: "Quantum Computing / 量子計算"
 type: concept
 language: en | zh | bilingual       # Primary language of the page body
 created: YYYY-MM-DD
@@ -61,21 +63,21 @@ related_concepts: []                # Explicit related slugs (beyond wikilinks)
 ```markdown
 # {Title}
 
-## Definition / 定义
+## Definition / 定義
 [Clear, concise definition. 2-4 sentences.]
 
-## Key Properties / 关键特性
+## Key Properties / 關鍵特性
 - Property 1
 - Property 2
 
 ## Examples / 示例
 [Concrete examples or use cases.]
 
-## Related Concepts / 相关概念
+## Related Concepts / 相關概念
 - [[related-slug]] — brief description of relationship
 - [[another-slug]] — brief description of relationship
 
-## References / 参考资料
+## References / 參考資料
 - Source material used to construct this page
 ```
 
@@ -85,7 +87,7 @@ related_concepts: []                # Explicit related slugs (beyond wikilinks)
 
 **Purpose**: Research notes, blog drafts, meeting notes, diary entries, imported web articles, PDF summaries.
 
-**File naming**: `{YYYY-MM-DD}-{slug}.md` — date-prefixed for chronological sorting. Examples:
+**File naming**: `article/{YYYY-MM-DD}-{slug}.md` — date-prefixed for chronological sorting (or `{YYYY-MM-DD}-{slug}.md` at wiki root if `organize_by_type: false`). Examples:
 
 - `2026-04-28-weekly-review.md`
 - `2026-04-27-transformer-paper-notes.md`
@@ -122,14 +124,14 @@ diary_date: YYYY-MM-DD              # For diary entries
 ## Summary / 摘要
 [2-4 sentence overview.]
 
-## Content / 内容
+## Content / 內容
 [Main body — flexible format depending on content type.]
 
-## Key Takeaways / 关键收获
+## Key Takeaways / 關鍵收獲
 - Takeaway 1
 - Takeaway 2
 
-## Related / 关联
+## Related / 關聯
 - [[related-slug]] — connection
 ```
 
@@ -139,7 +141,7 @@ diary_date: YYYY-MM-DD              # For diary entries
 
 **Purpose**: Author, researcher, historical figure, notable individual.
 
-**File naming**: `{slug}.md` — lowercase kebab-case of the person's name. Examples:
+**File naming**: `person/{slug}.md` — lowercase kebab-case of the person's name (or `{slug}.md` at wiki root if `organize_by_type: false`). Examples:
 
 - `alan-turing.md`
 - `andrej-karpathy.md`
@@ -174,18 +176,18 @@ affiliations: []                    # Organizations they're associated with
 ```markdown
 # {Name}
 
-## Bio / 简介
+## Bio / 簡介
 [Brief biography — 3-5 sentences.]
 
-## Key Contributions / 主要贡献
+## Key Contributions / 主要貢獻
 - Contribution 1
 - Contribution 2
 
-## Related Work / 相关工作
+## Related Work / 相關工作
 - [[related-concept]] — their role
 - [[related-person]] — collaboration or influence
 
-## Links / 链接
+## Links / 鏈接
 - [Personal site](url)
 - [Wikipedia](url)
 ```
@@ -196,7 +198,7 @@ affiliations: []                    # Organizations they're associated with
 
 **Purpose**: A saved query answer — synthesized from existing wiki pages. These are the "compounding" part of the wiki: explorations that become permanent knowledge.
 
-**File naming**: `synth-{YYYY-MM-DD}-{slug}.md`. Examples:
+**File naming**: `synthesis/synth-{YYYY-MM-DD}-{slug}.md` (or `synth-{YYYY-MM-DD}-{slug}.md` at wiki root if `organize_by_type: false`). Examples:
 
 - `synth-2026-04-28-quantum-vs-classical.md`
 
@@ -229,13 +231,13 @@ gaps_noted: []                      # Knowledge gaps identified
 ```markdown
 # {Title}
 
-## Question / 问题
+## Question / 問題
 > Original question
 
 ## Answer / 回答
 [Direct answer, synthesized from evidence.]
 
-## Evidence / 证据
+## Evidence / 證據
 | Source Page | Key Point | Relevance |
 |-------------|-----------|-----------|
 | [[slug-a]] | ... | high |
@@ -249,7 +251,7 @@ gaps_noted: []                      # Knowledge gaps identified
 > | [[page-a]] | Claim X |
 > | [[page-b]] | Claim Y (conflicts with X) |
 
-## Gaps / 知识缺口
+## Gaps / 知識缺口
 - What the wiki doesn't cover on this topic
 
 ## Confidence / 置信度: {high|medium|low}
@@ -271,7 +273,7 @@ gaps_noted: []                      # Knowledge gaps identified
 
 - **Link liberally**: Every mention of another wiki page's topic should be a wikilink.
 - **Bidirectional**: When you add a link from Page A to Page B, check if Page B should link back.
-- **No paths in wikilinks**: Use just the slug (filename minus `.md`), not the full path. All pages are in the same flat namespace.
+- **No paths in wikilinks**: Use just the slug (filename minus `.md`), not the full path. Slugs are globally unique addresses regardless of which type subfolder (or flat root) a page physically lives in.
 - **Resolve aliases**: Check `aliases` in frontmatter when looking up wikilink targets.
 
 ### Contradiction Callouts
@@ -281,7 +283,7 @@ When a contradiction is detected between pages, format as:
 ```markdown
 > ⚠️ **Contradiction / 矛盾**: [description of what conflicts]
 >
-> | Page | Claim / 主张 |
+> | Page | Claim / 主張 |
 > |------|-------------|
 > | [[page-a]] | "Claim A from this page" |
 > | [[page-b]] | "Claim B — contradicts A" |
@@ -313,10 +315,10 @@ The index at `.llm-wiki/index.md` is **auto-generated** and follows this format:
 ### {tag-name} ({N} pages)
 - [[slug]] — summary
 
-## Orphan Pages / 孤立页面
+## Orphan Pages / 孤立頁面
 - [[slug]] — summary (no incoming links)
 
-## Review Queue / 审核队列
+## Review Queue / 審核隊列
 - [[slug]] — ⚠️ issue description
 ```
 
@@ -328,9 +330,9 @@ The index at `.llm-wiki/index.md` is **auto-generated** and follows this format:
 |---------|-----------|---------|
 | Page slugs | lowercase kebab-case | `machine-learning.md` |
 | Tags | lowercase kebab-case | `deep-learning`, `nlp` |
-| Display titles | Title Case, can include non-ASCII | `Machine Learning`, `机器学习` |
+| Display titles | Title Case, can include non-ASCII | `Machine Learning`, `機器學習` |
 | Date format | YYYY-MM-DD | `2026-04-28` |
-| Bilingual titles | "English / 中文" | `Quantum Computing / 量子计算` |
+| Bilingual titles | "English / 中文" | `Quantum Computing / 量子計算` |
 
 ### Slug Derivation
 
@@ -364,7 +366,7 @@ When deriving a slug from a title:
 Bilingual pages use this section heading pattern:
 
 ```markdown
-## Section Name / 中文标题
+## Section Name / 中文標題
 ```
 
 ### Query Language Matching

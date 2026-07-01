@@ -32,7 +32,7 @@ Uninstall the LLM Wiki skill from Claude Code.
 
 Removes:
   • ~/.claude/skills/llm-wiki/     (skill directory)
-  • ~/.claude/commands/wiki-*.md   (slash commands)
+  • ~/.claude/commands/wiki*.md   (slash commands)
 
 Options:
   --force     Skip confirmation prompt
@@ -57,7 +57,7 @@ if [ -d "$SKILL_DIR" ]; then
     FOUND_ANYTHING=true
 fi
 
-if ls "$COMMANDS_DIR"/wiki-*.md >/dev/null 2>&1; then
+if ls "$COMMANDS_DIR"/wiki*.md >/dev/null 2>&1; then
     FOUND_ANYTHING=true
 fi
 
@@ -79,9 +79,9 @@ if [ -d "$SKILL_DIR" ]; then
     echo "    ${YELLOW}$SKILL_DIR${NC}"
 fi
 
-if ls "$COMMANDS_DIR"/wiki-*.md >/dev/null 2>&1; then
+if ls "$COMMANDS_DIR"/wiki*.md >/dev/null 2>&1; then
     echo "  Slash commands:"
-    for f in "$COMMANDS_DIR"/wiki-*.md; do
+    for f in "$COMMANDS_DIR"/wiki*.md; do
         if [ -f "$f" ]; then
             echo "    ${YELLOW}$f${NC}"
         fi
@@ -116,8 +116,8 @@ else
 fi
 
 # 2. Remove wiki command files
-if ls "$COMMANDS_DIR"/wiki-*.md >/dev/null 2>&1; then
-    for f in "$COMMANDS_DIR"/wiki-*.md; do
+if ls "$COMMANDS_DIR"/wiki*.md >/dev/null 2>&1; then
+    for f in "$COMMANDS_DIR"/wiki*.md; do
         if [ -f "$f" ]; then
             rm -f "$f"
             success "Removed $(basename "$f")"

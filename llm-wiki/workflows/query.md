@@ -112,7 +112,7 @@ Present the answer in this structure:
 
 [Direct, concise answer to the question.]
 
-## Evidence / 证据
+## Evidence / 證據
 
 | Source Page | Key Point | Relevance | Confidence |
 |-------------|-----------|-----------|------------|
@@ -131,7 +131,7 @@ Present the answer in this structure:
 >
 > *Recommendation: [which seems more reliable and why]*
 
-## Knowledge Gaps / 知识缺口
+## Knowledge Gaps / 知識缺口
 
 - [What the wiki doesn't know about this topic]
 - [Suggestions for sources that could fill the gap]
@@ -140,7 +140,7 @@ Present the answer in this structure:
 
 [1-2 sentence rationale.]
 
-## Pages Consulted / 查阅的页面
+## Pages Consulted / 查閱的頁面
 
 - [[page-a]]
 - [[page-b]]

@@ -27,7 +27,7 @@ If there was no recent query: ask "What question and answer should I save?"
 
 1. Extract key terms from the question
 2. Convert to lowercase kebab-case
-3. Remove question words (what, how, why, 什么, 怎么, 为什么)
+3. Remove question words (what, how, why, 什麼, 怎麼, 為什麼)
 4. Keep under 60 characters
 5. Prefix: `synth-{YYYY-MM-DD}-{slug}`
 
@@ -43,7 +43,7 @@ Read `templates/synthesis.md` from the skill directory.
 
 ### Step 5: Write the Synthesis Page
 
-Create `$WIKI_ROOT/synth-{YYYY-MM-DD}-{slug}.md`:
+Create `$WIKI_ROOT/synthesis/synth-{YYYY-MM-DD}-{slug}.md` (or `$WIKI_ROOT/synth-{YYYY-MM-DD}-{slug}.md` if `organize_by_type: false` in config):
 
 ```yaml
 ---
@@ -60,7 +60,7 @@ confidence: {high|medium|low}
 ---
 ```
 
-Body: Question / 问题 → Answer / 回答 → Evidence / 证据 (table) → Contradictions / 矛盾 → Gaps / 知识缺口 → Confidence / 置信度
+Body: Question / 問題 → Answer / 回答 → Evidence / 證據 (table) → Contradictions / 矛盾 → Gaps / 知識缺口 → Confidence / 置信度
 
 ### Step 6: Cross-Link
 
@@ -79,7 +79,7 @@ Follow `workflows/ingest.md` Step 15 index regeneration procedure.
 ### Step 9: Confirm
 
 ```
-# Synthesis Saved / 综合页面已保存
+# Synthesis Saved / 綜合頁面已保存
 **File:** synth-{date}-{slug}.md
 **Title:** {title}
 **Based on:** {N} wiki pages

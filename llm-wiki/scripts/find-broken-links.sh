@@ -28,7 +28,7 @@ VALID_TARGETS=""
 while IFS= read -r -d '' file; do
     slug=$(basename "$file" .md)
     VALID_TARGETS="$VALID_TARGETS"$'\n'"$slug"
-done < <(find "$WIKI_ROOT" -maxdepth 1 -name "*.md" ! -path "*/.llm-wiki/*" ! -name "index.md" -print0 2>/dev/null)
+done < <(find "$WIKI_ROOT" -maxdepth 2 -name "*.md" ! -path "*/.llm-wiki/*" ! -name "index.md" -print0 2>/dev/null)
 
 
 # Collect aliases from all pages using awk for robust YAML parsing
@@ -68,7 +68,7 @@ while IFS= read -r -d '' file; do
     while IFS= read -r alias; do
         [ -n "$alias" ] && VALID_TARGETS="$VALID_TARGETS"$'\n'"$alias"
     done < <(collect_aliases "$file")
-done < <(find "$WIKI_ROOT" -maxdepth 1 -name "*.md" ! -path "*/.llm-wiki/*" -print0 2>/dev/null)
+done < <(find "$WIKI_ROOT" -maxdepth 2 -name "*.md" ! -path "*/.llm-wiki/*" -print0 2>/dev/null)
 
 # Deduplicate valid targets
 VALID_TARGETS=$(echo "$VALID_TARGETS" | sort -u)
@@ -95,7 +95,7 @@ check_page() {
 
 while IFS= read -r -d '' file; do
     check_page "$file"
-done < <(find "$WIKI_ROOT" -maxdepth 1 -name "*.md" ! -path "*/.llm-wiki/*" -print0 2>/dev/null)
+done < <(find "$WIKI_ROOT" -maxdepth 2 -name "*.md" ! -path "*/.llm-wiki/*" -print0 2>/dev/null)
 
 
 if [ "$BROKEN_FOUND" -eq 0 ]; then

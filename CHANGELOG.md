@@ -5,6 +5,18 @@ All notable changes to LLM Wiki will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Added
+
+- `commands/wiki.md` — dedicated `/wiki` dashboard slash command file (previously undocumented as "skill auto-registration" and resolved to `/llm-wiki` instead)
+- `organize_by_type` config option — pages are stored under `article/`, `concept/`, `person/`, `synthesis/` subfolders by default, with the flat layout still available by setting it to `false`
+
+### Changed
+
+- All simplified Chinese text in templates, schema, and workflow docs converted to Traditional Chinese (Taiwan usage)
+- Structural lint scripts (`find-broken-links.sh`, `find-orphans.sh`, `validate-frontmatter.sh`, `check-stale.sh`) now scan one level of subfolders so they work with both the flat and type-organized layouts
+
 ## [0.1.0] — 2026-05-03
 
 ### Added

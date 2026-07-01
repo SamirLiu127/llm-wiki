@@ -1,5 +1,5 @@
 ---
-title: "{Title / 标题}"
+title: "{Title / 標題}"
 type: concept
 language: en | zh | bilingual
 created: YYYY-MM-DD
@@ -9,22 +9,22 @@ aliases: []
 summary: ""
 ---
 
-# {Title / 标题}
+# {Title / 標題}
 
-## Definition / 定义
+## Definition / 定義
 <!-- Clear, concise definition. 2-4 sentences. -->
 
-## Key Properties / 关键特性
+## Key Properties / 關鍵特性
 
 -
 
 ## Examples / 示例
 <!-- Concrete examples or use cases. -->
 
-## Related Concepts / 相关概念
+## Related Concepts / 相關概念
 
 - [[related-slug]] — brief description of relationship
 
-## References / 参考资料
+## References / 參考資料
 
 -

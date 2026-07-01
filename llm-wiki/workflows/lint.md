@@ -95,7 +95,7 @@ The LLM performs a quick scan (no page content reads needed):
 1. List all `*.md` files in `$WIKI_ROOT/` (excluding `.llm-wiki/` and `index.md`):
 
    ```bash
-   find "$WIKI_ROOT" -maxdepth 1 -name "*.md" ! -path "*/.llm-wiki/*" ! -name "index.md"
+   find "$WIKI_ROOT" -maxdepth 2 -name "*.md" ! -path "*/.llm-wiki/*" ! -name "index.md"
    ```
 
 2. Check naming rules:
@@ -116,9 +116,9 @@ The LLM performs a quick scan (no page content reads needed):
 After running Q1-Q5, present:
 
 ```
-# Wiki Health Report / 维基健康报告
+# Wiki Health Report / 維基健康報告
 
-## Errors / 错误 ({N})
+## Errors / 錯誤 ({N})
 | Check | Details |
 |-------|---------|
 | Frontmatter | ... |
@@ -251,9 +251,9 @@ Add to `$WIKI_ROOT/.llm-wiki/review.json`.
 ## Full Lint Report
 
 ```
-# Full Wiki Health Report / 完整维基健康报告
+# Full Wiki Health Report / 完整維基健康報告
 
-## Structural / 结构 (from quick lint)
+## Structural / 結構 (from quick lint)
 {Same table as quick lint report}
 
 ## Contradictions / 矛盾 ({N})
@@ -261,18 +261,18 @@ Add to `$WIKI_ROOT/.llm-wiki/review.json`.
 |-------|----------|----------|
 | [[a]] vs [[b]] | ... | error |
 
-## Quality Issues / 质量问题 ({N})
+## Quality Issues / 質量問題 ({N})
 | Page | Issue | Severity |
 |------|-------|----------|
 | [[x]] | Shallow (< 200 words) | warning |
 | [[y]] | Not updated in 90 days | info |
 
-## Language Issues / 语言问题 ({N})
+## Language Issues / 語言問題 ({N})
 | Page | Issue |
 |------|-------|
 | [[z]] | Tagged 'en' but body is Chinese |
 
-## Knowledge Gaps / 知识缺口 ({N})
+## Knowledge Gaps / 知識缺口 ({N})
 | Gap | Priority | Suggested Source |
 |-----|----------|-----------------|
 | Missing page for X | high | [source suggestion] |
@@ -287,7 +287,7 @@ Add to `$WIKI_ROOT/.llm-wiki/review.json`.
 - Review queue: {N} items added
 - Next full lint suggested after {N} more ingests
 
-## Actions / 建议操作
+## Actions / 建議操作
 1. [Highest priority fix]
 2. [Next fix]
 3. Run /wiki-review to process the queue

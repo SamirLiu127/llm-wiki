@@ -178,6 +178,22 @@ summary: "Another test page"
 This links back to [[test-concept]].
 EOF
 
+    mkdir -p ./wiki/person
+    cat > ./wiki/person/subfolder-page.md << 'EOF'
+---
+title: "Subfolder Page"
+type: person
+language: en
+created: "2026-04-30"
+modified: "2026-04-30"
+tags: [test]
+aliases: []
+summary: "A test page under a type subfolder"
+---
+# Subfolder Page
+Links to [[test-concept]] to verify organize_by_type layouts are scanned too.
+EOF
+
     success "  test pages created"
 
     # Test validate-frontmatter.sh

@@ -1,5 +1,5 @@
 ---
-title: "{Title / 标题}"
+title: "{Title / 標題}"
 type: synthesis
 language: en | zh | bilingual
 created: YYYY-MM-DD
@@ -11,16 +11,16 @@ based_on: []
 confidence: high | medium | low
 ---
 
-# {Title / 标题}
+# {Title / 標題}
 
-## Question / 问题
+## Question / 問題
 >
 > Original question
 
 ## Answer / 回答
 <!-- Direct answer, synthesized from evidence. -->
 
-## Evidence / 证据
+## Evidence / 證據
 
 | Source Page | Key Point | Relevance |
 |-------------|-----------|-----------|
@@ -36,7 +36,7 @@ confidence: high | medium | low
 > | [[page-b]] | Claim Y (conflicts with X) |
 -->
 
-## Gaps / 知识缺口
+## Gaps / 知識缺口
 
 -
 
