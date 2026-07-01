@@ -33,11 +33,16 @@ When the user asks a factual, conceptual, or knowledge-based question, **always 
 
 | Path | Purpose |
 |------|---------|
-| `./wiki/` | Wiki root — all markdown pages |
+| `./wiki/article/` | Article pages |
+| `./wiki/concept/` | Concept pages |
+| `./wiki/person/` | Person pages |
+| `./wiki/synthesis/` | Synthesis pages |
 | `./wiki/.llm-wiki/index.md` | Auto-generated page catalog |
 | `./wiki/.llm-wiki/config.md` | User preferences |
 | `./wiki/.llm-wiki/review.json` | Pending review items |
 | `./.raw/` | Source documents for ingestion |
+
+Pages are organized by type into the subfolders above by default (`organize_by_type: true` in `config.md`). If `organize_by_type: false`, all pages are placed directly under `./wiki/` instead. Either way, [[wikilinks]] resolve by slug alone — never a path.
 
 ## Slash Commands
 
