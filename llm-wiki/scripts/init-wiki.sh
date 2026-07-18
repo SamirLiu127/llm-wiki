@@ -36,7 +36,7 @@ echo "Initializing LLM Wiki at: $WIKI_ROOT"
 mkdir -p "$WIKI_ROOT"
 mkdir -p "$WIKI_ROOT/.llm-wiki/cache/ingests"
 mkdir -p "$WIKI_ROOT/.llm-wiki/inbox"
-mkdir -p "$WIKI_ROOT/article" "$WIKI_ROOT/concept" "$WIKI_ROOT/person" "$WIKI_ROOT/synthesis"
+mkdir -p "$WIKI_ROOT/article" "$WIKI_ROOT/concept" "$WIKI_ROOT/person" "$WIKI_ROOT/synthesis" "$WIKI_ROOT/worklog"
 
 # Copy schema
 cp "$SCHEMA_SRC" "$WIKI_ROOT/.llm-wiki/schema.md"

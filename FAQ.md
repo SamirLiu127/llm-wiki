@@ -62,6 +62,22 @@ There is no hard limit, but very large files (>10,000 words) may benefit from be
 
 The ingest workflow automatically detects contradictions and adds callout blocks. You can also use the review queue (`/wiki-review`) to manually reconcile conflicts.
 
+### How do I capture what we discussed in a session (not a file)?
+
+Run `/wiki-log`. Where `/wiki-ingest` turns **files** into wiki pages, `/wiki-log` turns the **current conversation** into a dated `worklog/` page — it extracts decisions, action items (`- [ ]`), discussion points, and mentioned entities. Add `--project <name>` to tag the log with a project.
+
+`/wiki-log` is **append-only**: it writes only to `worklog/` and never modifies your `concept`/`article`/`person`/`synthesis` pages. It links to existing pages via [[wikilinks]]; if a mentioned entity has no page yet, the link is marked `(pending)` rather than fabricated or auto-created. It is manual-only — no background agent creates worklogs.
+
+### How do I get a recap of my worklogs?
+
+Run `/wiki-report`. It rolls up the `worklog/` pages in a range into a single `synthesis` page: decisions made, action items (open vs done, counted from `- [ ]`/`- [x]`), discussion threads, and entities involved. Scope it with:
+
+- `--since YYYY-MM-DD` — worklogs on or after a date
+- `--project <name>` — only a given project
+- `--week` — the last 7 days
+
+The report's `based_on` field chains back to every worklog it summarizes, so provenance stays navigable.
+
 ---
 
 ## Configuration

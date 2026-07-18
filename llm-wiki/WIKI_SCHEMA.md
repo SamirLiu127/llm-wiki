@@ -19,8 +19,11 @@ Read this file when you need to understand:
 | `article` | `article/{YYYY-MM-DD}-{slug}.md` | Research notes, blog drafts, meeting notes, diary entries, imported documents |
 | `person` | `person/{slug}.md` | Author, researcher, historical figure, notable individual |
 | `synthesis` | `synthesis/synth-{YYYY-MM-DD}-{slug}.md` | Saved query answer — a synthesized page from existing knowledge |
+| `worklog` | `worklog/{YYYY-MM-DD}-{slug}.md` | Dated log of a work discussion — decisions, action items, discussion points, entities (append-only) |
 
 Pages are organized into type subfolders by default (`organize_by_type: true` in `config.md`). Set `organize_by_type: false` to keep the older flat layout (all pages directly under `$WIKI_ROOT/`) — both layouts are supported; only the directory changes, the file naming pattern within each type stays the same.
+
+> **Four + one.** The first four types (`concept`/`article`/`person`/`synthesis`) form the curated knowledge base. `worklog` is a fifth, independent type with different characteristics — strongly time-based (`date` is the primary key), a log rather than knowledge, and effectively frozen once written. It is created only by `/wiki-log`, which is **append-only** and **never writes to the other four types** (it links to them read-only via [[wikilinks]]).
 
 ---
 
@@ -257,6 +260,74 @@ gaps_noted: []                      # Knowledge gaps identified
 ## Confidence / 置信度: {high|medium|low}
 [Reasoning for confidence level.]
 ```
+
+---
+
+## 5. Worklog Page (`type: worklog`)
+
+**Purpose**: A dated log of a work discussion — the decisions, action items, key
+discussion points, and mentioned entities from a working session. Created only by
+`/wiki-log`, which is **append-only** and writes **exclusively** to `worklog/`. It
+reads existing pages solely to resolve [[wikilinks]] and never modifies them.
+
+**File naming**: `worklog/{YYYY-MM-DD}-{slug}.md` — date-prefixed for chronological
+sorting (or `{YYYY-MM-DD}-{slug}.md` at wiki root if `organize_by_type: false`).
+Examples:
+
+- `2026-07-18-auth-redesign-sync.md`
+- `2026-07-18-sprint-planning.md`
+
+**Required frontmatter**:
+
+```yaml
+---
+title: "Display Title"
+type: worklog
+language: en | zh | bilingual
+created: YYYY-MM-DD
+modified: YYYY-MM-DD
+date: YYYY-MM-DD                    # Primary key — the day the discussion happened
+project: ""                        # Project this log belongs to (may be empty)
+based_on: [session]                # Provenance: captured from the live conversation
+tags: [worklog]                    # Always include the `worklog` tag
+summary: ""                        # One-sentence description of the session
+---
+```
+
+`date` is the primary sort/filter key used by `/wiki-report`. On creation it equals
+`created`; `created`/`modified` are retained so the shared validation and index
+tooling treat worklog pages like any other page.
+
+**Body structure** (bilingual-aware):
+
+```markdown
+# {Title}
+
+## 討論重點 / Discussion
+- Key point 1
+- Key point 2
+
+## 決策 / Decisions
+- Decision made
+
+## 待辦 / Action items
+- [ ] Open item
+- [x] Completed item
+
+## 相關連結 / Links
+- [[existing-slug]] — relationship
+- [[missing-slug]] (pending) — no page yet; do not fabricate or auto-create
+```
+
+**Rules**:
+
+- Action items use checkbox syntax: `- [ ]` = open, `- [x]` = done. `/wiki-report`
+  counts these to report open vs done. There is no separate task/kanban system.
+- Entities link to existing `concept`/`person` pages via [[wikilinks]]. If the target
+  page does not exist, mark the link `(pending)` — **never** invent content or
+  auto-create the page.
+- Worklog pages are typically not linked *from* other pages, so they will surface as
+  orphans in lint — this is expected and harmless for logs.
 
 ---
 

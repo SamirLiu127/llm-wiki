@@ -1,6 +1,6 @@
 ---
 name: wiki
-description: Build and maintain a persistent, interlinked wiki from source documents. Knowledge is compiled once and kept current. Based on Andrej Karpathy's LLM Wiki pattern. Commands: /wiki (dashboard), /wiki-ingest, /wiki-query, /wiki-lint, /wiki-save, /wiki-graph, /wiki-review.
+description: Build and maintain a persistent, interlinked wiki from source documents. Knowledge is compiled once and kept current. Based on Andrej Karpathy's LLM Wiki pattern. Commands: /wiki (dashboard), /wiki-ingest, /wiki-query, /wiki-lint, /wiki-save, /wiki-graph, /wiki-review, /wiki-log, /wiki-report.
 ---
 
 # LLM Wiki — Compounding Knowledge Base
@@ -47,7 +47,7 @@ Use `Skill("llm-wiki")` when you need deep wiki operations (ingestion, full lint
 
 ## Slash Commands
 
-The skill provides 7 real slash commands. Each is a `.md` file in `commands/` that gets installed to `~/.claude/commands/` by `install.sh`. Claude Code auto-discovers them at startup.
+The skill provides 9 real slash commands. Each is a `.md` file in `commands/` that gets installed to `~/.claude/commands/` by `install.sh`. Claude Code auto-discovers them at startup.
 
 When you are invoked (via `Skill("llm-wiki")`), determine which workflow to follow based on the command the user ran:
 
@@ -60,6 +60,8 @@ When you are invoked (via `Skill("llm-wiki")`), determine which workflow to foll
 | `/wiki-save` | `commands/wiki-save.md` | Save current answer as a synthesis page | `workflows/save-synthesis.md` |
 | `/wiki-graph` | `commands/wiki-graph.md` | Generate knowledge graph visualization | `workflows/graph.md` |
 | `/wiki-review` | `commands/wiki-review.md` | Process the review queue | `workflows/review.md` |
+| `/wiki-log [--project <name>]` | `commands/wiki-log.md` | Capture the current session discussion into a dated worklog page | `workflows/wiki-log.md` |
+| `/wiki-report [--since\|--project\|--week]` | `commands/wiki-report.md` | Recap worklog pages into a synthesis report | `workflows/wiki-report.md` |
 
 ## How to Use This Skill
 
@@ -125,6 +127,7 @@ When the user invokes `/wiki`, do the following:
 | article | N |
 | person | N |
 | synthesis | N |
+| worklog | N |
 
 ## Pending Review / 待審核 ({N})
 ... (from review.json)

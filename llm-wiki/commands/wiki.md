@@ -38,6 +38,7 @@ The user ran `/wiki $ARGUMENTS`.
 | article | N |
 | person | N |
 | synthesis | N |
+| worklog | N |
 
 ## Pending Review / 待審核 ({N})
 ... (from review.json)
