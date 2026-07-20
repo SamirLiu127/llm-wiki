@@ -35,11 +35,26 @@ the logic is re-implemented for this fork, no upstream code was copied.
 
 ### Step 0: Resolve Wiki Root
 
-Determine the wiki root (from `SKILL.md` resolution rules):
+**Use the exact same wiki-root resolution as the existing commands (`/wiki-ingest`,
+`/wiki-query`, …). Do not invent path logic.** Per `SKILL.md` → "Finding the Wiki
+Root", in priority order:
 
 1. `$LLM_WIKI_ROOT` environment variable
-2. `wiki/` in current project
-3. Ask user
+2. `wiki/` directory in the current project
+3. Ask the user
+
+Call the resolved directory `$WIKI_ROOT`. **Every** path below is relative to that
+single root — there is no separate lookup for worklogs:
+
+- Worklog page → `$WIKI_ROOT/worklog/`
+- Index → `$WIKI_ROOT/.llm-wiki/index.md` (surfaced as `$WIKI_ROOT/index.md`)
+- [[wikilink]] resolution → against pages under the same `$WIKI_ROOT`
+
+**Multi-vault isolation:** because the root comes only from `$LLM_WIKI_ROOT` / the
+session's project directory, `/wiki-log` writes into whichever vault the session was
+started in. Two sessions started in different vaults (e.g. personal vs client) each
+write to their own `$WIKI_ROOT` with no cross-contamination — the command inherits
+this for free by never hardcoding a path.
 
 If `$WIKI_ROOT/.llm-wiki/index.md` does not exist, offer to run
 `scripts/init-wiki.sh` first (it creates the `worklog/` folder).

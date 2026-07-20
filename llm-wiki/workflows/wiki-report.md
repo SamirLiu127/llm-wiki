@@ -28,8 +28,19 @@ SKILL.md routes here
 
 ### Step 0: Resolve Wiki Root
 
-Per `SKILL.md` rules (`$LLM_WIKI_ROOT` → `wiki/` → ask). If there are no
-`worklog/` pages, tell the user there is nothing to report yet.
+**Use the exact same wiki-root resolution as the existing commands — do not invent
+path logic.** Per `SKILL.md` → "Finding the Wiki Root", in priority order:
+`$LLM_WIKI_ROOT` → `wiki/` in the current project → ask the user. Call the result
+`$WIKI_ROOT`.
+
+All reads and writes are relative to that single root: worklogs from
+`$WIKI_ROOT/worklog/`, the synthesis report into `$WIKI_ROOT/synthesis/`, and the
+index at `$WIKI_ROOT/.llm-wiki/index.md`. Because the root comes only from
+`$LLM_WIKI_ROOT` / the session's project directory, a session started in a different
+vault reports on and writes to that vault only — no cross-contamination.
+
+If there are no `worklog/` pages under `$WIKI_ROOT`, tell the user there is nothing
+to report yet.
 
 ### Step 1: Parse Range / Filter Flags
 
