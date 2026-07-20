@@ -37,6 +37,7 @@ When the user asks a factual, conceptual, or knowledge-based question, **always 
 | `./wiki/concept/` | Concept pages |
 | `./wiki/person/` | Person pages |
 | `./wiki/synthesis/` | Synthesis pages |
+| `./wiki/worklog/` | Worklog pages (dated discussion logs) |
 | `./wiki/.llm-wiki/index.md` | Auto-generated page catalog |
 | `./wiki/.llm-wiki/config.md` | User preferences |
 | `./wiki/.llm-wiki/review.json` | Pending review items |
@@ -55,3 +56,5 @@ Use the Skill tool: `Skill("llm-wiki")` for advanced operations:
 - `/wiki-save` — Save answer as synthesis page
 - `/wiki-graph` — Knowledge graph
 - `/wiki-review` — Process review queue
+- `/wiki-log [--project <name>]` — Capture the current session discussion into a dated worklog page
+- `/wiki-report [--since <date>] [--project <name>] [--week]` — Recap worklogs into a synthesis report

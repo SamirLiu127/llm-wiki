@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- `worklog` page type — a fifth, independent type for dated logs of work discussions (`worklog/YYYY-MM-DD-{slug}.md`), with `templates/worklog.md` and a full spec in `WIKI_SCHEMA.md`
+- `/wiki-log` command — captures the current session conversation (decisions, action items, discussion points, entities) into a single dated worklog page. Append-only: writes only to `worklog/`, links to existing pages read-only via [[wikilinks]] (unresolved links marked `(pending)`, never fabricated), and regenerates the index. Manual-only, no background agent
+- `/wiki-report` command — recaps worklog pages over a `--since` / `--project` / `--week` range into a `synthesis` page, counting open vs done action items and chaining `based_on` back to the source worklogs
 - `commands/wiki.md` — dedicated `/wiki` dashboard slash command file (previously undocumented as "skill auto-registration" and resolved to `/llm-wiki` instead)
 - `organize_by_type` config option — pages are stored under `article/`, `concept/`, `person/`, `synthesis/` subfolders by default, with the flat layout still available by setting it to `false`
 

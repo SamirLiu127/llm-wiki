@@ -156,8 +156,10 @@ wiki/
 │   └── transformer.md              Concept page
 ├── person/
 │   └── alan-turing.md              Person page
-└── synthesis/
-    └── synth-2026-04-28-riscv.md   Synthesis page
+├── synthesis/
+│   └── synth-2026-04-28-riscv.md   Synthesis page
+└── worklog/
+    └── 2026-07-18-sprint-sync.md   Worklog page (dated discussion log)
 ```
 
 Pages are organized by type into subfolders by default (`organize_by_type: true` in `config.md`). Set `organize_by_type: false` for the older flat layout, with all pages directly under `wiki/`. Either way, [[wikilinks]] always resolve by slug alone — never a path.
@@ -198,6 +200,20 @@ query, based_on[], confidence: high | medium | low
 
 File: `synthesis/synth-YYYY-MM-DD-{slug}.md`
 
+### `worklog` — Dated log of a work discussion
+
+```yaml
+type: worklog
+date, project, based_on: [session]
+```
+
+Body: Discussion → Decisions → Action items (`- [ ]`) → Links
+
+File: `worklog/YYYY-MM-DD-{slug}.md`
+
+Created by `/wiki-log` (append-only — never writes to the four types above);
+summarized by `/wiki-report` into a synthesis recap.
+
 ---
 
 ## Bilingual Support
@@ -224,8 +240,10 @@ llm-wiki/
 │   ├── wiki-lint.md                 /wiki-lint
 │   ├── wiki-save.md                 /wiki-save
 │   ├── wiki-graph.md                /wiki-graph
-│   └── wiki-review.md               /wiki-review
-├── templates/                       Page templates (article, concept, person, synthesis)
+│   ├── wiki-review.md               /wiki-review
+│   ├── wiki-log.md                  /wiki-log
+│   └── wiki-report.md               /wiki-report
+├── templates/                       Page templates (article, concept, person, synthesis, worklog)
 ├── scripts/                         Deterministic bash operations
 │   ├── setup-project.sh             ★ One-stop project setup
 │   ├── init-wiki.sh                 Bootstrap new wiki directory
@@ -240,7 +258,9 @@ llm-wiki/
 │   ├── lint.md                      Structural + semantic health check
 │   ├── save-synthesis.md            Persist answers as synthesis pages
 │   ├── graph.md                     D3.js knowledge graph generation
-│   └── review.md                    Review queue processing
+│   ├── review.md                    Review queue processing
+│   ├── wiki-log.md                  Capture the current session into a worklog
+│   └── wiki-report.md               Recap worklogs into a synthesis report
 └── hooks/                           Session lifecycle
     ├── session-start.sh             Wiki stats + PROACTIVE WIKI RULE
     └── session-stop.sh              Write hot-cache for next session

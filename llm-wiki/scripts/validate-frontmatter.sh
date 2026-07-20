@@ -22,7 +22,7 @@ if [ ! -d "$WIKI_ROOT" ]; then
 fi
 
 REQUIRED_FIELDS=("title" "type" "language" "created" "modified" "tags" "summary")
-VALID_TYPES=("concept" "article" "person" "synthesis")
+VALID_TYPES=("concept" "article" "person" "synthesis" "worklog")
 VALID_LANGUAGES=("en" "zh" "bilingual")
 
 ISSUES_FOUND=0

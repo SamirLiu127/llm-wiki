@@ -111,6 +111,8 @@ REQUIRED_FILES=(
     "commands/wiki.md"
     "commands/wiki-ingest.md"
     "commands/wiki-query.md"
+    "commands/wiki-log.md"
+    "commands/wiki-report.md"
     "hooks/session-start.sh"
     "hooks/session-stop.sh"
     "workflows/ingest.md"
@@ -119,10 +121,13 @@ REQUIRED_FILES=(
     "workflows/save-synthesis.md"
     "workflows/graph.md"
     "workflows/review.md"
+    "workflows/wiki-log.md"
+    "workflows/wiki-report.md"
     "templates/article.md"
     "templates/concept.md"
     "templates/person.md"
     "templates/synthesis.md"
+    "templates/worklog.md"
 )
 ALL_OK=true
 for f in "${REQUIRED_FILES[@]}"; do
